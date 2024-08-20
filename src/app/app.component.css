@@ -1,0 +1,50 @@
+.user-management-card, .add-user-card {
+    margin-bottom: 20px;
+  }
+  
+  .user-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .user-info {
+    flex: 1;
+  }
+  
+  .user-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .mat-divider {
+    margin: 10px 0;
+  }
+  
+  .mt-3 {
+    margin-top: 30px;
+  }
+
+  .user-item {
+    border-top: solid 1px #00000042;
+}
+
+mat-card.mat-mdc-card.mdc-card.user-management-card {
+    width: 80%;
+    margin: auto;
+}
+
+mat-card.mat-mdc-card.mdc-card.add-user-card.mt-3 {
+    width: 80%;
+    margin: 10px auto 0 auto;
+}
+
+mat-form-field.mat-mdc-form-field {
+    width: 100%;
+}

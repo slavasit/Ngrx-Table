@@ -1,0 +1,56 @@
+<mat-card class="user-management-card">
+  <mat-card-header>
+    <mat-card-title>User Management</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="user-list">
+      <div *ngFor="let user of users$ | async" class="user-item">
+        <div class="user-info">
+          <div>ID: {{ user.id }}</div>
+          <div *ngIf="selectedUserId && selectedUserId === user.id; else showName">
+            <mat-form-field appearance="outline" class="edit-name">
+              <input matInput [(ngModel)]="editedUserName" />
+            </mat-form-field>
+          </div>
+          <ng-template #showName>
+            <div>Name: {{ user.name }}</div>
+          </ng-template>
+        </div>
+        <div class="user-actions">
+          <ng-container *ngIf="selectedUserId === user.id; else updateButton">
+            <button mat-raised-button color="primary" (click)="onSaveUser(user.id)">Save</button>
+          </ng-container>
+          <ng-template #updateButton>
+            <button mat-raised-button color="accent" (click)="onUpdateUser(user.id)">Update</button>
+          </ng-template>
+          <button mat-raised-button color="warn" (click)="onDeleteUser(user.id)">Delete</button>
+        </div>
+      </div>
+      
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<!-- Add New User Form -->
+<mat-card class="add-user-card mt-3">
+  <mat-card-header>
+    <mat-card-title>Add New User</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="onAddUser()">
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label for="newUserId">ID</mat-label>
+          <input matInput type="number" id="newUserId" [(ngModel)]="newUserId" name="newUserId" required />
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label for="newUserName">Name</mat-label>
+          <input matInput type="text" id="newUserName" [(ngModel)]="newUserName" name="newUserName" required />
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" type="submit">Add User</button>
+    </form>
+  </mat-card-content>
+</mat-card>
